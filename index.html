@@ -9,20 +9,33 @@
 
   <body>
     <aside>
-      <img src="/images.png" alt="Logo Accenture" class="sidebar-logo" />
-      <h1>Karta zamestnance</h1>
+      <div class="sidebar-top">
+        <img src="/images.png" alt="Logo Accenture" class="sidebar-logo" />
+        <h1>Karta zamestnance</h1>
 
-      <ul>
-        <li><a href="#">Dochazka</a></li>
-        <li><a href="#">Skoleni</a></li>
-        <li><a href="#">Sprava majetku</a></li>
-        <li><a href="#">Certifikace</a></li>
-      </ul>
+        <ul>
+          <li><a href="#">Dochazka</a></li>
+          <li><a href="#">Skoleni</a></li>
+          <li><a href="#">Sprava majetku</a></li>
+          <li><a href="#">Certifikace</a></li>
+        </ul>
+      </div>
+
+      <div class="admin-section">
+        <hr />
+        <button id="admin-toggle-btn" class="sidebar-btn">Režim správce</button>
+      </div>
     </aside>
 
     <main>
       <header class="main-header">
-        <h2>Sprava majetku zamestnance</h2>
+        <h2>
+          Správa majetku
+          <small
+            >(Monika Nováková,
+            <span id="employee-id-hook">ID: 1234ACC</span>)</small
+          >
+        </h2>
 
         <form action="" class="search-bar">
           <label for="search">Hledat</label>
@@ -50,7 +63,7 @@
 
       <footer class="main-footer">
         <a href="#">Kontaktovat podporu</a>
-        <p>Text ohledne tm a gdpr a vop</p>
+        <p>Text ohledne tm | gdpr | vop</p>
       </footer>
     </main>
 
