@@ -21,7 +21,7 @@ body {
   background-color: var(--bg-main);
   color: var(--text-dark);
   display: grid;
-  grid-template-columns: 250px 1fr;
+  grid-template-columns: 280px 1fr;
   min-height: 100vh;
 }
 
@@ -183,6 +183,7 @@ main {
   }
 
   .asset-details {
+    margin-top: auto;
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 0.5rem 1rem;
@@ -206,17 +207,21 @@ main {
 
     &.status-ok {
       background-color: #e6f4ea;
-      color: #1e7e34;
+      color: #6fa87c;
     }
 
     &.status-issue {
       background-color: #fce8e6;
-      color: #d93025;
+      color: #ca645d;
+    }
+
+    &.status-pending {
+      background-color: #fff4e5;
+      color: #dda04c;
     }
   }
 
   .card-footer {
-    margin-top: auto;
     padding-top: 1rem;
     border-top: 1px solid var(--border-color);
     display: flex;
@@ -247,6 +252,10 @@ main {
   font-size: 0.85rem;
   border-top: 1px solid var(--border-color);
   width: 100%;
+
+  & p {
+    margin-top: 0.5rem;
+  }
 }
 
 /* --- 6. RESPONSIVE --- */
@@ -260,5 +269,10 @@ main {
   }
   main .main-header {
     grid-template-columns: 1fr;
+  }
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }

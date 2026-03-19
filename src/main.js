@@ -1,5 +1,6 @@
 import "./style.css";
 
+// MOCKING DATABASE, Fetch simulation
 const assets = [
   {
     id: "1-ACC",
@@ -156,3 +157,37 @@ const assets = [
 ];
 
 const assetContainer = document.getElementById("asset-grid");
+
+function renderAssets(assets) {
+  assetContainer.innerHTML = ""; // aby nedaval duplikace
+  assets.forEach((asset) => {
+    assetContainer.innerHTML += `
+    <div class="asset-card">
+      
+      <div class="card-title-row">
+        <h3>${asset.name}</h3>
+        <span class="category-tag">${asset.category}</span>
+      </div>
+      
+      <dl class="asset-details">
+        <dt>ID:</dt>
+        <dd>${asset.id}</dd>
+        
+        <dt>Typ:</dt>
+        <dd>${asset.type}</dd>
+      </dl>
+      
+      <div>
+        <span class="status-badge status-${asset.status_id}">${asset.status_text}</span>
+      </div>
+      
+      <div class="card-footer">
+        <button class="admin-btn">Spravovat</button>
+      </div>
+
+    </div>
+  `;
+  });
+}
+
+renderAssets(assets);
