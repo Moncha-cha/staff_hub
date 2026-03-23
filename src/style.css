@@ -25,6 +25,10 @@ body {
   min-height: 100vh;
 }
 
+body.admin-mode .asset-card .admin-btn {
+  display: inline-block;
+}
+
 /* --- 2. SIDEBAR (ASIDE) --- */
 aside {
   background-color: var(--white);
@@ -228,6 +232,7 @@ main {
     justify-content: flex-end;
 
     .admin-btn {
+      display: none;
       padding: 6px 12px;
       background-color: var(--white);
       border: 1px solid var(--border-color);

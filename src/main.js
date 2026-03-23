@@ -1,6 +1,6 @@
 import "./style.css";
 
-// MOCKING DATABASE, Fetch simulation
+// MOCKING DATABASE, Fetch simulace
 const assets = [
   {
     id: "1-ACC",
@@ -156,7 +156,13 @@ const assets = [
   },
 ];
 
+// ------ OVLADACE, STAV
+
 const assetContainer = document.getElementById("asset-grid");
+const adminButton = document.getElementById("admin-toggle-btn");
+let isAdmin = false;
+
+// ------ FUNKCE
 
 function renderAssets(assets) {
   assetContainer.innerHTML = ""; // aby nedaval duplikace
@@ -191,3 +197,31 @@ function renderAssets(assets) {
 }
 
 renderAssets(assets);
+
+// ------ UDALOSTI
+
+// Pokud je prihlasen
+adminButton.addEventListener("click", () => {
+  if (isAdmin === true) {
+    console.log("Admin odhlášen");
+    isAdmin = false;
+    document.body.classList.remove("admin-mode");
+    adminButton.textContent = "Přihlásit jako admin";
+  }
+
+  // Pokud neni prihlasen
+  else {
+    const password = prompt("Zadejte heslo pro přístup do administrace:");
+    if (password === "admin123") {
+      console.log("Admin přihlášen");
+      isAdmin = true;
+      document.body.classList.add("admin-mode");
+      adminButton.textContent = "Odhlásit admina";
+    }
+
+    // Špatné heslo
+    else {
+      alert("Neplatné heslo. Přístup odepřen.");
+    }
+  }
+});
