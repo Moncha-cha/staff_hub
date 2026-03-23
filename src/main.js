@@ -228,5 +228,39 @@ adminButton.addEventListener("click", () => {
 
 // ----- FILTRY
 
-const nefunkcniMajetek = assets.filter((asset) => asset.status_id === "issue");
-console.log("Nefunkční majetek:", nefunkcniMajetek);
+// const nefunkcniMajetek = assets.filter((asset) => asset.status_id === "issue");
+//console.log("Nefunkční majetek:", nefunkcniMajetek);
+
+const filterButtons = document.querySelectorAll(".filter-btn");
+filterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const status = button.getAttribute("data-status");
+    if (status === "all") {
+      renderAssets(assets); // proste posle vsechny
+    } else {
+      const filteredAssets = assets.filter(
+        (asset) => asset.status_id === status,
+      );
+      renderAssets(filteredAssets);
+    }
+  });
+});
+
+// ----- HLEDANI / nefunguje pri prekladu stranky do aj, vim o tom
+// kvuli textu v cestine a nefunkcnosti vyhledavani v aj by bylo potreba pouzit normalizaci textu
+// cj pouzivam vyhradne pro svoji lepsi orientaci v osobnich projektech
+
+const searchInput = document.getElementById("search-input");
+searchInput.addEventListener("input", () => {
+  const searchText = searchInput.value.toLowerCase();
+  const filteredAssets = assets.filter((asset) => {
+    return (
+      asset.name.toLowerCase().includes(searchText) ||
+      asset.category.toLowerCase().includes(searchText) ||
+      asset.type.toLowerCase().includes(searchText) ||
+      asset.id.toLowerCase().includes(searchText)
+    );
+  });
+
+  renderAssets(filteredAssets);
+});
