@@ -167,19 +167,23 @@ const assetContainer = document.getElementById("asset-grid");
 const adminButton = document.getElementById("admin-toggle-btn");
 let isAdmin = false;
 
+const nameHook = document.getElementById("employee-name-hook");
+const idHook = document.getElementById("employee-id-hook");
+
 // ------ FUNKCE
 
 function renderEmployeeInfo(employee) {
-  const nameHook = document.getElementById("employee-name-hook");
-  const idHook = document.getElementById("employee-id-hook");
   nameHook.textContent = employee.name;
   idHook.textContent = employee.id;
 }
 
 function renderAssets(assets) {
-  assetContainer.innerHTML = ""; // aby nedaval duplikace
+  assetContainer.innerHTML = ""; // aby nedaval duplikace, ale vymenime innerHTML +=
+
+  let allCardsHTML = ""; // naleju si vsechny karty do stringu a pak je vykreslim najednou
+
   assets.forEach((asset) => {
-    assetContainer.innerHTML += `
+    allCardsHTML += `
     <div class="asset-card">
       
       <div class="card-title-row">
@@ -206,7 +210,10 @@ function renderAssets(assets) {
     </div>
   `;
   });
+  assetContainer.innerHTML = allCardsHTML; // vykresli vsechny karty najednou, rychleji nez postupne pridavat do DOMu
 }
+
+// ------ VOLANI FUNKCI
 
 renderAssets(assets);
 
