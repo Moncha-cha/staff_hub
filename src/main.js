@@ -170,7 +170,33 @@ let isAdmin = false;
 const nameHook = document.getElementById("employee-name-hook");
 const idHook = document.getElementById("employee-id-hook");
 
+// pro zobrazeni poctu u filter btn, slo by i pres All, ale nechci se zamotat
+// pouzito querySelector misto ID na ukazku
+const filterNumberAll = document.querySelector('[data-status="all"] span');
+const filterNumberOk = document.querySelector('[data-status="ok"] span');
+const filterNumberPending = document.querySelector(
+  '[data-status="pending"] span',
+);
+
+const filterNumberIssue = document.querySelector('[data-status="issue"] span');
+
 // ------ FUNKCE
+
+function renderFilterCounts() {
+  const countAll = assets.length;
+  const countOk = assets.filter((asset) => asset.status_id === "ok").length;
+  const countPending = assets.filter(
+    (asset) => asset.status_id === "pending",
+  ).length;
+  const countIssue = assets.filter(
+    (asset) => asset.status_id === "issue",
+  ).length;
+
+  filterNumberAll.textContent = `(${countAll})`;
+  filterNumberOk.textContent = `(${countOk})`;
+  filterNumberPending.textContent = `(${countPending})`;
+  filterNumberIssue.textContent = `(${countIssue})`;
+}
 
 function renderEmployeeInfo(employee) {
   nameHook.textContent = employee.name;
@@ -214,6 +240,8 @@ function renderAssets(assets) {
 }
 
 // ------ VOLANI FUNKCI
+
+renderFilterCounts();
 
 renderAssets(assets);
 
@@ -269,7 +297,7 @@ filterButtons.forEach((button) => {
 
 // ----- HLEDANI / nefunguje pri prekladu stranky do aj, vim o tom
 // kvuli textu v cestine a nefunkcnosti vyhledavani v aj by bylo potreba pouzit normalizaci textu
-// cj pouzivam vyhradne pro svoji lepsi orientaci v osobnich projektech
+// cj zatim pouzivam vyhradne pro svoji lepsi orientaci v osobnich projektech
 
 const searchInput = document.getElementById("search-input");
 searchInput.addEventListener("input", () => {
